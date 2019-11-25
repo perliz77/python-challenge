@@ -26,3 +26,10 @@ with open(input_csvfile) as data:
         total_months = total_months + 1
 #to find the net total amount and convert string into integer:
         total_net = total_net + int(row[1])
+with open(input_csvfile, "r") as data:
+#to split data on delimiter (commas):
+    csvread = csv.reader(data, delimiter=",")
+#to skip column headers:
+    header = next(csvread)
+#to start new list for cell values in 2nd column (#s):
+    new_list = []
