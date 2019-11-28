@@ -6,11 +6,15 @@ import csv
 input_csvfile = os.path.join("Resources", "budget_data.csv")
 output_analysis = os.path.join("Analysis", "budget_analysis.txt")
 
+
 #variables needed:
-header = next
 total_months = 0
 total_net = 0
 changes_total = 0
+list_of_changes = []
+value = 0
+change = 0
+profits = []
 # greatest_increase =
 # greatest_decrease =
 
@@ -19,28 +23,32 @@ with open(input_csvfile) as data:
     csvread = csv.reader(data)
     
     header = next(csvread) 
-    
 
-#to find the total # of months included in dataset:   
+    #this is january's data (1st row):
+    first_row = next(csvread)  
+    previous_net = int(first_row[1])
+    #this is including january in count of total months: 
+    total_months = total_months + 1
+    #this is the total net starting with january: 
+    total_net = total_net + int(first_row[1])
+    
+    #to find the total # of months included in dataset:                 111111111111111111111111111111
     for row in csvread:
         total_months = total_months + 1
-        
-#to find the net total amount and convert string into integer:
-        total_net = total_net + int(row[1])
-        
-with open(input_csvfile, "r") as data:
-#to split data on delimiter (commas):
-    csvread = csv.reader(data, delimiter=",")
 
-#to skip column headers:
-    header = next(csvread)
+        #to find the net total amount and convert string into integer:   22222222222222222222222222222
+        total_net = total_net + int(row[1])              
+
+        # Calculate the change, then add it to list of changes:
+        changes_total = int(row[1]) - previous_net
+        profits.append(changes_total)
+        previous_net = int(row[1])
+        
+        #Find the average change in "Profit/Losses between months over entire period" 3333333333333333333333
+        avg_change = sum(profits)/len(profits)
+        
     
-#to start new list for cell values in 2nd column (#s):
-    new_list = []
-
-#to find the average of the changes over the entire period:
-changes_total = sum(new_list)
-changes_avg = changes_total/total_months
-#print(changes_avg)
-
-
+    #to find the greatest increases/greatest decrease in profits (date & amount) over entire period:
+    
+#greatest_increase = max(new_list)
+#greatest_decrease = min(new_list)
