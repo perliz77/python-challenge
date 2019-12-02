@@ -6,17 +6,18 @@ import csv
 input_csvfile = os.path.join("Resources", "budget_data.csv")
 output_analysis = os.path.join("Analysis", "budget_analysis.txt")
 
+#lists to store data:
+profits = []
+dates = []
+list_of_changes = []
+
 
 #variables needed:
 total_months = 0
 total_net = 0
 changes_total = 0
-list_of_changes = []
 value = 0
 change = 0
-profits = []
-# greatest_increase =
-# greatest_decrease =
 
 #to open files:
 with open(input_csvfile) as data:
@@ -32,23 +33,33 @@ with open(input_csvfile) as data:
     #this is the total net starting with january: 
     total_net = total_net + int(first_row[1])
     
-    #to find the total # of months included in dataset:                 111111111111111111111111111111
+    #QUESTION 1: to find the total # of months included in dataset:     
     for row in csvread:
         total_months = total_months + 1
+        #print("Total Months: ", total_months)
 
-        #to find the net total amount and convert string into integer:   22222222222222222222222222222
-        total_net = total_net + int(row[1])              
+        #QUESTION 2: to find the net total amount and convert string into integer: 
+        total_net = total_net + int(row[1])    
+        #print("Total: " + "$", total_net)         
 
-        # Calculate the change, then add it to list of changes:
+        #to calculate the change, then add it to list of changes:
         changes_total = int(row[1]) - previous_net
         profits.append(changes_total)
         previous_net = int(row[1])
         
-        #Find the average change in "Profit/Losses between months over entire period" 3333333333333333333333
+        #QUESTION 3: to find the average change in "Profit/Losses between months over entire period" 
         avg_change = sum(profits)/len(profits)
-        
+        #print("Average Change: " + "$", avg_change)
     
-    #to find the greatest increases/greatest decrease in profits (date & amount) over entire period:
+#QUESTION 4 & 5: Greatest increase in profits and greatest decrease in losses(amount):        
+    greatest_increase = max(profits) 
+    #print("Greatest Increase in Profits: " + "$", greatest_increase)
+    greatest_decrease = min(profits)
+    #print("Greatest Decrease in Profits: " + "$", greatest_decrease)
     
-#greatest_increase = max(new_list)
-#greatest_decrease = min(new_list)
+    
+    
+ #QUESTION 4 & 5: Greatest increase in profits and greatest decrease in losses(date): 
+    #greatest_index = profits.index(greatest_increase)                             
+    #increase_date = date[list_of_changes.index(greatest_increase)]
+    #print(increase_date)
