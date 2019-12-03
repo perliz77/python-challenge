@@ -85,7 +85,7 @@ with open(output_analysis, "w") as txt_file:
 
 
 """ text_file.write("Greatest Increase in Profits: "  + greatest_increase[0] +  "$" + str(greatest_increase[1] + "\n")
-text_file = open("PYBank_Analysis.txt", "w")
+text_file = open("budget_analysis.txt", "w")
 text_file.write("Financial Analysis\n")
 text_file.write("------------------------\n")
 text_file.write("Total Months: " + str(total_months) + "\n")
